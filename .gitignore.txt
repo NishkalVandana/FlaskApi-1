@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environment
+myvenv/
+venv/
+
+# Environment variables
+.env
+
+# SQLite (optional – depends if you want DB in repo)
+*.db
