@@ -12,9 +12,9 @@ from app.models import User, TokenBlacklist
 
 api_auth = Blueprint("api_auth", __name__)
 
-# ---------------- REGISTER ----------------
+#  REGISTER 
 @api_auth.route("/api/register", methods=["POST"])
-@limiter.limit("2 per minute")
+@limiter.limit("2/minute")
 def register():
     data = request.get_json()
 
@@ -37,9 +37,9 @@ def register():
     return {"msg": "User registered successfully"}, 201
 
 
-# ---------------- LOGIN ----------------
+#  LOGIN 
 @api_auth.route("/api/login", methods=["POST"])
-@limiter.limit("10 per hour")
+@limiter.limit("10/hour")
 def login():
     data = request.get_json()
 
@@ -67,7 +67,7 @@ def login():
     }, 200
 
 
-# ---------------- REFRESH ----------------
+#  REFRESH 
 @api_auth.route("/api/refresh", methods=["POST"])
 @jwt_required(refresh=True)
 def refresh():
@@ -87,7 +87,7 @@ def refresh():
     return {"access_token": new_access_token}, 200
 
 
-# ---------------- LOGOUT ----------------
+#  LOGOUT 
 @api_auth.route("/api/logout", methods=["POST"])
 @jwt_required(refresh=True)
 def logout():
