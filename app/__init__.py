@@ -1,4 +1,5 @@
 import os
+from flask_cors import CORS
 from flask import Flask
 from app.extensions import db, limiter
 from app.errors import register_error_handlers
@@ -17,7 +18,7 @@ def create_app():
     
     db.init_app(app)
     migrate.init_app(app,db)
-    
+    CORS(app, resources={r"/api/*": {"origins": "*"}})
     jwt.init_app(app)
 
     from app.routes.api_auth import api_auth
