@@ -22,7 +22,7 @@ def hello():
 
 @api_task.route("/api/tasks", methods=["GET"])
 @jwt_required()
-@limiter.limit("50 per minute")
+@limiter.limit("20 per minute")
 def get_tasks():
     user_id = get_jwt_identity()
 
@@ -33,7 +33,7 @@ def get_tasks():
 
 @api_task.route("/api/tasks", methods=["POST"])
 @jwt_required()
-@limiter.limit("50 per minute")
+@limiter.limit("20 per minute")
 def create_task():
     user_id = get_jwt_identity()
     data = request.get_json()
