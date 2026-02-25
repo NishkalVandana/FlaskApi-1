@@ -24,7 +24,6 @@ def register():
 
     if not username or not email or not password:
         return {"error": "username, email, password required"}, 400
-
     if User.query.filter_by(email=email).first():
         return {"error": "User already exists"}, 409
 
@@ -53,7 +52,7 @@ def login():
 
     access_token = create_access_token(
         identity=str(user.id),
-        expires_delta=timedelta(seconds=30)
+        expires_delta=timedelta(minutes=5)
     )
 
     refresh_token = create_refresh_token(
