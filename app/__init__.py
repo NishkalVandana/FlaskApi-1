@@ -18,7 +18,13 @@ def create_app():
     
     db.init_app(app)
     migrate.init_app(app,db)
-    CORS(app, resources={r"/api/*": {"origins": "*"}})
+    CORS(
+    app,
+    resources={r"/api/*": {"origins": "*"}},
+    allow_headers=["Content-Type", "Authorization"],
+    methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    supports_credentials=True
+)
     jwt.init_app(app)
 
     from app.routes.api_auth import api_auth

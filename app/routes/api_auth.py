@@ -14,7 +14,7 @@ api_auth = Blueprint("api_auth", __name__)
 
 #  REGISTER 
 @api_auth.route("/api/register", methods=["POST"])
-@limiter.limit("2/minute")
+#@limiter.limit("2/minute")
 def register():
     data = request.get_json()
 
@@ -38,7 +38,7 @@ def register():
 
 #  LOGIN 
 @api_auth.route("/api/login", methods=["POST"])
-@limiter.limit("10/hour")
+#@limiter.limit("10/hour")
 def login():
     data = request.get_json()
 
